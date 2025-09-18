@@ -39,7 +39,8 @@
     /* 圖片輪播 */
     .image-carousel {position: relative; overflow: hidden; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);}
     .carousel-images {display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);}
-    .carousel-images img {width: 100%; flex-shrink: 0; height: 640px; object-fit: cover;}
+    .carousel-images img {width: 100%; flex-shrink: 0; height: 640px; object-fit: cover; cursor: pointer; transition: transform 0.3s ease;}
+    .carousel-images img:hover {transform: scale(1.02);}
     .carousel-nav {position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; background: rgba(0,0,0,0.5); padding: 10px 20px; border-radius: 25px; backdrop-filter: blur(10px);}
     .nav-dot {width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s ease; border: 2px solid transparent;}
     .nav-dot.active {background: #1b6ef3; border-color: #fff; transform: scale(1.2);}
@@ -99,7 +100,7 @@
       .contact-info-list {grid-template-columns: 1fr;}
       section {padding: 40px 0;}
       .container {padding: 0 15px;}
-      .carousel-images img {height: 400px;}
+      .carousel-images img {height: 300px;}
     }
 
     @media (max-width: 480px) {
@@ -107,6 +108,7 @@
       .hero h2 {font-size: 1.1rem;}
       .btn {padding: 12px 25px; font-size: 14px;}
       .card, .contact-form {padding: 20px;}
+      .carousel-images img {height: 250px;}
     }
   </style>
 </head>
@@ -339,9 +341,62 @@
       showSlide(currentSlide);
     }, 4000);
 
+    // 圖片點擊放大功能
+    function openImageModal(imageSrc, imageAlt) {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        cursor: pointer;
+      `;
+      
+      const img = document.createElement('img');
+      img.src = imageSrc;
+      img.alt = imageAlt;
+      img.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      `;
+      
+      modal.appendChild(img);
+      document.body.appendChild(modal);
+      
+      // 點擊關閉
+      modal.addEventListener('click', () => {
+        document.body.removeChild(modal);
+      });
+      
+      // ESC鍵關閉
+      document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+          document.body.removeChild(modal);
+          document.removeEventListener('keydown', escHandler);
+        }
+      });
+    }
+
     // 初始化
     document.addEventListener('DOMContentLoaded', () => {
       showSlide(0);
+      
+      // 為所有圖片添加點擊事件
+      const images = document.querySelectorAll('.carousel-images img');
+      images.forEach((img, index) => {
+        img.addEventListener('click', () => {
+          openImageModal(img.src, img.alt);
+        });
+      });
     });
   </script>
 </body>
