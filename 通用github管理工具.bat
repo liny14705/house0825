@@ -553,6 +553,7 @@ echo.
 
 echo 請輸入您的 GitHub 倉庫連結：
 echo 範例：https://github.com/username/repository-name
+echo 或：https://github.com/username/repository-name.git
 echo.
 set /p repo_url=請輸入 GitHub 連結: 
 
@@ -572,6 +573,15 @@ if errorlevel 1 (
     goto start
 )
 echo ✅ 連結格式正確
+
+echo.
+echo 正在處理 URL 格式...
+if "%repo_url:~-4%"==".git" (
+    echo ✅ URL 已包含 .git 後綴
+) else (
+    set repo_url=%repo_url%.git
+    echo ✅ 已自動添加 .git 後綴
+)
 
 echo.
 echo 正在檢查 Git 是否已安裝...
@@ -970,6 +980,7 @@ echo.
 
 echo 請輸入新專案的 GitHub 倉庫連結：
 echo 範例：https://github.com/username/project-name
+echo 或：https://github.com/username/project-name.git
 echo.
 set /p repo_url=請輸入 GitHub 連結: 
 
@@ -989,6 +1000,15 @@ if errorlevel 1 (
     goto start
 )
 echo ✅ 連結格式正確
+
+echo.
+echo 正在處理 URL 格式...
+if "%repo_url:~-4%"==".git" (
+    echo ✅ URL 已包含 .git 後綴
+) else (
+    set repo_url=%repo_url%.git
+    echo ✅ 已自動添加 .git 後綴
+)
 
 echo.
 echo 正在檢查 Git 是否已安裝...
