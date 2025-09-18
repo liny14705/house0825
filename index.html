@@ -62,13 +62,27 @@
     .testimonial:hover {transform: translateY(-3px); background: rgba(255,255,255,0.12);}
 
     /* 聯絡表單 */
-    .contact-form {background: rgba(255,255,255,0.05); border-radius: 20px; padding: 40px; margin-bottom: 30px;}
-    form {display: grid; gap: 20px;}
-    input, textarea {padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: var(--text-color); font-size: 16px; transition: all 0.3s ease;}
-    input:focus, textarea:focus {outline: none; border-color: #1b6ef3; background: rgba(255,255,255,0.1); box-shadow: 0 0 0 3px rgba(27, 110, 243, 0.1);}
-    input::placeholder, textarea::placeholder {color: rgba(255,255,255,0.6);}
-    button {padding: 15px 30px; border: none; border-radius: 12px; background: linear-gradient(135deg, #1b6ef3, #4facfe); color: #fff; font-weight: 600; cursor: pointer; font-size: 16px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;}
-    button:hover {transform: translateY(-2px); box-shadow: 0 8px 25px rgba(27, 110, 243, 0.3);}
+    /* 主要聯絡資訊樣式 */
+    .main-contact-info {margin-bottom: 40px;}
+    .contact-highlights {display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 30px;}
+    .contact-item.highlight {background: linear-gradient(135deg, rgba(27, 110, 243, 0.15), rgba(79, 172, 254, 0.15)); border: 2px solid rgba(79, 172, 254, 0.3); padding: 25px; border-radius: 20px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden;}
+    .contact-item.highlight::before {content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: left 0.5s ease;}
+    .contact-item.highlight:hover::before {left: 100%;}
+    .contact-item.highlight:hover {transform: translateY(-5px); box-shadow: 0 15px 40px rgba(79, 172, 254, 0.2); border-color: #4facfe;}
+    .contact-item.highlight h4 {color: #4facfe; font-size: 1.3rem; margin-bottom: 15px; font-weight: 700;}
+    .contact-item.highlight p {font-size: 1.1rem; color: #fff;}
+
+    /* 地址與經紀業資訊區塊 */
+    .address-broker-section {display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;}
+    .address-info, .broker-info {background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; border: 1px solid rgba(79, 172, 254, 0.2);}
+    .address-info h3, .broker-info h3 {color: #4facfe; margin-bottom: 20px; text-align: center; font-size: 1.5rem;}
+    .address-details h4 {color: #1b6ef3; font-size: 1.3rem; margin-bottom: 15px; text-align: center;}
+    .address-details p {color: #fff; text-align: center; font-size: 1.1rem;}
+
+    /* 聯絡人員資訊 */
+    .contact-staff {margin-top: 30px;}
+    .contact-staff h3 {color: #4facfe; margin-bottom: 25px; text-align: center; font-size: 1.5rem;}
+    .staff-info {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;}
 
     /* 聯絡資訊 */
     .contact-info-list {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;}
@@ -115,6 +129,9 @@
       .broker-licenses {gap: 12px;}
       .license-item {padding: 12px 15px; flex-direction: column; text-align: center; gap: 8px;}
       .license-type, .license-name {font-size: 0.9rem;}
+      .address-broker-section {grid-template-columns: 1fr; gap: 20px;}
+      .contact-highlights {grid-template-columns: 1fr; gap: 20px;}
+      .staff-info {grid-template-columns: 1fr;}
     }
 
     @media (max-width: 480px) {
@@ -277,72 +294,76 @@
 
   <!-- 聯絡資訊 -->
   <section id="contact" class="container">
-    <h2>📞 聯絡我</h2>
-    <div class="contact-form">
-      <form onsubmit="event.preventDefault(); alert('已送出！我們將盡快回覆您');">
-        <input type="text" placeholder="姓名" required>
-        <input type="email" placeholder="Email" required>
-        <textarea rows="4" placeholder="留言內容"></textarea>
-        <button type="submit">送出訊息</button>
-      </form>
+    <h2>📞 聯絡資訊</h2>
+    
+    <!-- 主要聯絡資訊 -->
+    <div class="main-contact-info">
+      <div class="contact-highlights">
+        <div class="contact-item highlight">
+          <h4>💬 Line ID</h4>
+          <p><a href="https://lin.ee/G6wcuk7" target="_blank" style="color: #4facfe; text-decoration: none;">@931aeinu</a></p>
+        </div>
+        <div class="contact-item highlight">
+          <h4>🏠 所有物件</h4>
+          <p><a href="https://realtor.houseprice.tw/agent/buy/0925666597/" target="_blank" style="color: #4facfe; text-decoration: none;">查看完整物件列表</a></p>
+        </div>
+        <div class="contact-item highlight">
+          <h4>📊 實價登錄</h4>
+          <p><a href="https://lvr.land.moi.gov.tw/" target="_blank" style="color: #4facfe; text-decoration: none;">查詢實價登錄</a></p>
+        </div>
+      </div>
     </div>
 
-    <!-- 經紀業資訊 -->
-    <div class="broker-info">
-      <h3>🏢 經紀業資訊</h3>
-      <div class="broker-details">
-        <div class="broker-company">
-          <h4>常鴻悦豐企業社</h4>
+    <!-- 地址與經紀業資訊 -->
+    <div class="address-broker-section">
+      <div class="address-info">
+        <h3>📍 服務據點</h3>
+        <div class="address-details">
+          <h4>住商不動產楊梅大順店</h4>
+          <p>🕒 營業時間：09:00 - 21:00</p>
         </div>
-        <div class="broker-licenses">
-          <div class="license-item">
-            <span class="license-type">營業員：</span>
-            <span class="license-name">蔡文豪（112）桃市字第432900號</span>
+      </div>
+      
+      <div class="broker-info">
+        <h3>🏢 經紀業資訊</h3>
+        <div class="broker-details">
+          <div class="broker-company">
+            <h4>常鴻悦豐企業社</h4>
           </div>
-          <div class="license-item">
-            <span class="license-type">營業員：</span>
-            <span class="license-name">劉子菲（113）桃市字第467056號</span>
-          </div>
-          <div class="license-item">
-            <span class="license-type">經紀人：</span>
-            <span class="license-name">葉靜蓉（104）新北經證字第003119號</span>
+          <div class="broker-licenses">
+            <div class="license-item">
+              <span class="license-type">營業員：</span>
+              <span class="license-name">蔡文豪（112）桃市字第432900號</span>
+            </div>
+            <div class="license-item">
+              <span class="license-type">營業員：</span>
+              <span class="license-name">劉子菲（113）桃市字第467056號</span>
+            </div>
+            <div class="license-item">
+              <span class="license-type">經紀人：</span>
+              <span class="license-name">葉靜蓉（104）新北經證字第003119號</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
     
-    <div class="contact-info-list">
-      <div class="contact-item">
-        <h4>📍 地址</h4>
-        <p>住商不動產楊梅大順店</p>
-      </div>
-      <div class="contact-item">
-        <h4>📱 劉子菲</h4>
-        <p><a href="tel:0925666597" style="color: #4facfe; text-decoration: none;">0925-666-597</a></p>
-      </div>
-      <div class="contact-item">
-        <h4>📱 蔡濬瑒</h4>
-        <p><a href="tel:0928776755" style="color: #4facfe; text-decoration: none;">0928-776-755</a></p>
-      </div>
-      <div class="contact-item">
-        <h4>💬 Line ID</h4>
-        <p><a href="https://lin.ee/G6wcuk7" target="_blank" style="color: #4facfe; text-decoration: none;">@931aeinu</a></p>
-      </div>
-      <div class="contact-item">
-        <h4>🏠 所有物件</h4>
-        <p><a href="https://realtor.houseprice.tw/agent/buy/0925666597/" target="_blank" style="color: #4facfe; text-decoration: none;">查看完整物件列表</a></p>
-      </div>
-      <div class="contact-item">
-        <h4>📊 實價登錄</h4>
-        <p><a href="https://lvr.land.moi.gov.tw/" target="_blank" style="color: #4facfe; text-decoration: none;">查詢實價登錄</a></p>
-      </div>
-      <div class="contact-item">
-        <h4>🕒 營業時間</h4>
-        <p>09:00 - 21:00</p>
-      </div>
-      <div class="contact-item">
-        <h4>🔍 Facebook</h4>
-        <p>楊梅住商大順店－子菲＆豪哥 房仲楷模雙人組</p>
+    <!-- 聯絡人員資訊 -->
+    <div class="contact-staff">
+      <h3>👥 專業團隊</h3>
+      <div class="staff-info">
+        <div class="contact-item">
+          <h4>📱 劉子菲</h4>
+          <p><a href="tel:0925666597" style="color: #4facfe; text-decoration: none;">0925-666-597</a></p>
+        </div>
+        <div class="contact-item">
+          <h4>📱 蔡濬瑒</h4>
+          <p><a href="tel:0928776755" style="color: #4facfe; text-decoration: none;">0928-776-755</a></p>
+        </div>
+        <div class="contact-item">
+          <h4>📘 Facebook</h4>
+          <p><a href="https://www.facebook.com/profile.php?id=100064202201988" target="_blank" style="color: #4facfe; text-decoration: none;">楊梅住商大順店－子菲＆豪哥 房仲楷模雙人組</a></p>
+        </div>
       </div>
     </div>
   </section>
