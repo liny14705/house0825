@@ -81,6 +81,16 @@
     .contact-info a {color: #4facfe; text-decoration: none; transition: all 0.3s ease;}
     .contact-info a:hover {color: #1b6ef3; text-shadow: 0 0 5px rgba(79, 172, 254, 0.3);}
 
+    /* 經紀業資訊樣式 */
+    .broker-info {background: rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; margin: 30px 0; border: 1px solid rgba(79, 172, 254, 0.3);}
+    .broker-info h3 {color: #4facfe; margin-bottom: 20px; text-align: center; font-size: 1.8rem;}
+    .broker-details {text-align: center;}
+    .broker-company h4 {color: #1b6ef3; font-size: 1.5rem; margin-bottom: 25px; font-weight: 700;}
+    .broker-licenses {display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;}
+    .license-item {background: rgba(27, 110, 243, 0.1); padding: 15px 20px; border-radius: 12px; border-left: 4px solid #1b6ef3; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;}
+    .license-type {color: #4facfe; font-weight: 600; font-size: 1.1rem;}
+    .license-name {color: #fff; font-weight: 500; font-size: 1rem;}
+
     /* 主題切換 */
     .theme-toggle {position: fixed; top: 30px; right: 30px; background: rgba(255,255,255,0.1); color: var(--text-color); padding: 12px 20px; border-radius: 30px; cursor: pointer; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; z-index: 1000;}
     .theme-toggle:hover {background: rgba(255,255,255,0.2); transform: scale(1.05);}
@@ -101,6 +111,10 @@
       section {padding: 40px 0;}
       .container {padding: 0 15px;}
       .carousel-images img {height: 300px;}
+      .broker-info {padding: 20px; margin: 20px 0;}
+      .broker-licenses {gap: 12px;}
+      .license-item {padding: 12px 15px; flex-direction: column; text-align: center; gap: 8px;}
+      .license-type, .license-name {font-size: 0.9rem;}
     }
 
     @media (max-width: 480px) {
@@ -271,6 +285,30 @@
         <textarea rows="4" placeholder="留言內容"></textarea>
         <button type="submit">送出訊息</button>
       </form>
+    </div>
+
+    <!-- 經紀業資訊 -->
+    <div class="broker-info">
+      <h3>🏢 經紀業資訊</h3>
+      <div class="broker-details">
+        <div class="broker-company">
+          <h4>常鴻悦豐企業社</h4>
+        </div>
+        <div class="broker-licenses">
+          <div class="license-item">
+            <span class="license-type">營業員：</span>
+            <span class="license-name">蔡文豪（112）桃市字第432900號</span>
+          </div>
+          <div class="license-item">
+            <span class="license-type">營業員：</span>
+            <span class="license-name">劉子菲（113）桃市字第467056號</span>
+          </div>
+          <div class="license-item">
+            <span class="license-type">經紀人：</span>
+            <span class="license-name">葉靜蓉（104）新北經證字第003119號</span>
+          </div>
+        </div>
+      </div>
     </div>
     
     <div class="contact-info-list">
